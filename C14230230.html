@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes 1 | C14230230 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+
+
+<body class="bg-light">
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-primary bg-info">
+                <a class="navbar-brand text-light fs-2" href="#">Kanban View
+                </a>
+            </nav>
+        </div>
+        <div class="row pb-5">
+            <!-- Input task -->
+            <div class="mb-3">
+                <label for="" class="fs-5 mt-2">Tugas</label>
+                <input id="tugas" type="text" class="form-control w-25" required>
+            </div>
+            <div class="mb-3">
+                <label for="" class="fs-5">Status</label>
+                <select class="form-select form-select-lg w-25" name="" id="status">
+                    <option value="pending">Pending</option>
+                    <option value="planning">Planning</option>
+                    <option value="design">Design</option>
+                    <option value="development">Development</option>
+                    <option value="testing">Testing</option>
+                    <option value="resolved">Resolved</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <a id="submit" class="btn btn-primary" href="#" role="button">Tambah</a>
+            </div>
+
+            <!-- Table -->
+            <div class="row m-auto">
+                <div id="unclick" class="col-2 card border rounded bg-white" style="height: 500px;">
+                    <div scope="col" class=" card-header bg-light fw-bold">Pending</div>
+                    <div id="rowpending" class="">
+                    </div>
+                </div>
+                <div id="unclick" class="col-2 card border rounded bg-white">
+                    <div scope="col" class=" card-header bg-light fw-bold">Planning</div>
+                    <div id="rowplanning">
+                    </div>
+                </div>
+                <div id="unclick" class="col-2 card border rounded bg-white">
+                    <div scope="col" class=" card-header bg-light fw-bold">Design</div>
+                    <div id="rowdesign">
+                    </div>
+                </div>
+                <div id="unclick" class="col-2 card border rounded bg-white">
+                    <div scope="col" class=" card-header bg-light fw-bold">Development</div>
+                    <div id="rowdevelopment">
+                    </div>
+                </div>
+                <div id="unclick" class="col-2 card border rounded bg-white">
+                    <div scope="col" class=" card-header bg-light fw-bold">Testing</div>
+                    <div id="rowtesting">
+                    </div>
+                </div>
+                <div id="unclick" class="col-2 card border rounded bg-white">
+                    <div scope="col" class=" card-header bg-light fw-bold">Resolved</div>
+                    <div id="rowresolved">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#unclick').off('dbclick');
+        $('#submit').click(function () {
+            var tugas = $('#tugas').val();
+            var status = $('#status').val();
+            if (tugas) {
+                var newCard = $('<div class="card m-3"><div class="card-text m-3">' + tugas + '</div></div>');
+                // Hapus card
+                newCard.dblclick(function () {
+                    $(this).remove();
+                });
+                $('#row' + status).append(newCard);
+            }
+            else {
+                alert('Tugas harus diisi.');
+            }
+        });
+    });
+</script>
+
+</html>
